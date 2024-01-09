@@ -1,5 +1,6 @@
 package org.event.servlets;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -17,7 +18,7 @@ import java.sql.PreparedStatement;
 
 import org.event.DBManager;
 
-
+import java.util.UUID;
 
 @WebServlet("/ImageUploadServlet")
 @MultipartConfig
@@ -46,7 +47,7 @@ public class imageupload extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Part part = request.getPart("image");
 		String imagefile = part.getSubmittedFileName();
-		String uploadpath = "C:/Users/TOSHIBA/Desktop/event/event_organizers/src/main/webapp/images/"+imagefile;
+		String uploadpath = "E:/eclipse/event_organizer/src/main/webapp/images/"+imagefile;
 		System.out.println(uploadpath);
 		
 		try {

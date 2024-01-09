@@ -1,4 +1,5 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page import="jakarta.servlet.http.HttpSession"%>
 <%@ page import="java.io.IOException"%>
 <%@ page import="java.sql.SQLException"%>
@@ -31,6 +32,7 @@ try {
 		imageUrl = rs.getString("image_url");
 
 		String profileImagePath = imageUrl;
+		session.setAttribute("image_url",imageUrl);
 
 		System.out.println("User information fetched successfully.");
 		System.out.println("First Name: " + firstName);
@@ -57,8 +59,7 @@ try {
 %>
 
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -132,8 +133,9 @@ body {
 
 
 </head>
-
+<%@include file="header.jsp" %>
 <body>
+<h2 class="mt-5 text-center pt-3">Profile Settings</h2>
 	<input type="hidden" id="status"
 		value="<%=request.getAttribute("status")%>">
 	<section class="mt-4">
@@ -147,8 +149,8 @@ body {
 
 						<div class="d-flex flex-column align-items-center text-center">
 
-							<img src="images/<%=imageUrl%>" alt="Admin"
-								class="rounded-circle" width="200" height="200">
+							<img src="images/<%=imageUrl%>?t=<%=System.currentTimeMillis()%>" alt="ProfilePic"
+    class="rounded-circle" width="200" height="200">
 
 							<div class="mt-3">
 								<h4><%=username%></h4>
@@ -174,7 +176,7 @@ body {
 					</div>
 
 					<div class="col-md-8">
-						<h3 class="text-center mt-3 mb-4">Profile Settings</h3>
+						<h3 class="text-center mt-3 mb-4"></h3>
 
 						<form method="post" action="userprofile">
 							<div class="form-row">
@@ -205,13 +207,12 @@ body {
 						<section class="section-container">
 
 							<div class="form-group">
-								<form method="post" action="ImageUploadServlet"
-									enctype="multipart/form-data">
-									<label for="image">choose an image:</label> <input type="file"
-										name="image" required> <br> <input type="submit"
-										class="mt-3" value="Upload Image">
-								</form>
-							</div>
+								  <form method="post" action="ImageUploadServlet" enctype="multipart/form-data" onsubmit="refreshPage()">
+								    <label for="image">Choose an image:</label>
+								    <input type="file" name="image" required> <br>
+								    <input type="submit" class="mt-3" value="Upload Image">
+								  </form>
+								</div>
 
 
 							<div
@@ -298,6 +299,8 @@ body {
 			</div>
 		</div>
 	</section>
+	
+	 <%@ include file="footer.jsp" %>
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="js/main.js"></script>
 
@@ -322,5 +325,11 @@ body {
 			swal("Congrats", "Password changed successfully", "success");
 		}
 	</script>
+	<script>
+  function refreshPage() {
+    setTimeout(function() {
+      location.reload();
+    }, 7000); }
+</script>
 </body>
 </html>

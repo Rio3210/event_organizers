@@ -51,6 +51,7 @@ public class LoginServlet extends HttpServlet {
 				if (rs.next()) {
 				    session.setAttribute("email", rs.getString("email"));
 				    session.setAttribute("organizer_id", rs.getInt("user_id"));
+				    session.setAttribute("image_url", rs.getString("image_url"));
 				    response.sendRedirect("index.jsp");
 				} else {
 				    request.setAttribute("status", "failed");

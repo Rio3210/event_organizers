@@ -88,6 +88,9 @@ public class CreateEventServlet extends HttpServlet {
                 event.setEventId(resultSet.getInt("event_id"));
                 event.setTitle(resultSet.getString("title"));
                 event.setDescription(resultSet.getString("description"));
+                
+                
+                
                 // Set other event details accordingly
 
                 events.add(event);

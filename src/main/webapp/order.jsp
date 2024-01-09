@@ -57,10 +57,10 @@
  </section>
     <% 
 	    
-	    int organizerId = (int) session.getAttribute("organizer_id");
+	    
         
         // Fetch the list of events bought by the current user from the database
-        List<Event> events = fetchUserEvents(organizerId);
+        List<Event> events = fetchUserEvents((int) session.getAttribute("organizer_id"));
         
         // Display the list of events
         if (events != null && !events.isEmpty()) {
