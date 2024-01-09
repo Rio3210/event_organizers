@@ -8,7 +8,7 @@ public class DBManager {
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String URL = "jdbc:mysql://localhost:3306/eventorg";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "surafel";
+    private static final String PASSWORD = "DP9B8xE9%6ibZ.p";
 
     static {
         try {
