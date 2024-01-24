@@ -13,8 +13,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 
 import org.event.DBManager;
+import org.event.servlets.GetAllEvents;
+import org.event.models.Event;
 
 
 @WebServlet("/login")
@@ -52,6 +55,9 @@ public class LoginServlet extends HttpServlet {
 				    session.setAttribute("email", rs.getString("email"));
 				    session.setAttribute("organizer_id", rs.getInt("user_id"));
 				    session.setAttribute("image_url", rs.getString("image_url"));
+				    GetAllEvents getAllEventsServlet = new GetAllEvents();
+                    List<Event> events = getAllEventsServlet.getAllEvents();
+                    session.setAttribute("events", events);
 				    response.sendRedirect("index.jsp");
 				} else {
 				    request.setAttribute("status", "failed");

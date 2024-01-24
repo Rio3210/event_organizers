@@ -207,10 +207,11 @@ body {
 						<section class="section-container">
 
 							<div class="form-group">
-								  <form method="post" action="ImageUploadServlet" enctype="multipart/form-data" onsubmit="refreshPage()">
+								  <form method="post" action="ImageUploadServlet" enctype="multipart/form-data">
 								    <label for="image">Choose an image:</label>
 								    <input type="file" name="image" required> <br>
 								    <input type="submit" class="mt-3" value="Upload Image">
+								    
 								  </form>
 								</div>
 

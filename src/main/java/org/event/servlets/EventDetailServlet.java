@@ -5,7 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -35,6 +35,7 @@ public class EventDetailServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	HttpSession session = (HttpSession) request.getSession();
     	response.setHeader("Access-Control-Allow-Origin", "http://localhost:8088");
         response.setHeader("Access-Control-Allow-Methods", "POST");
         response.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -45,14 +46,14 @@ public class EventDetailServlet extends HttpServlet {
         Event event = fetchEventById(eventId);
 
         // Set the event object as an attribute in the request
-        request.setAttribute("eventdetail", event);
+        session.setAttribute("eventdetail", event);
 
         // Forward the request to the event details JSP
-        request.getRequestDispatcher("eventdetail.jsp").forward(request, response);
+        response.sendRedirect("eventdetail.jsp");
     }
 
     private Event fetchEventById(int eventId) {
-        Event event = null;
+    	Event event = new Event();
         try (Connection connection = DBManager.getConnection()) {
             // Build and execute a SQL query to fetch the event with the given event ID
             String query = "SELECT * FROM events WHERE event_id = ?";
@@ -61,19 +62,19 @@ public class EventDetailServlet extends HttpServlet {
 
                 try (ResultSet resultSet = statement.executeQuery()) {
                     if (resultSet.next()) {
-                        // Retrieve event details from the result set
-                        String title = resultSet.getString("title");
-                        String description = resultSet.getString("description");
-                        float price = resultSet.getFloat("price");
-                        // Retrieve other event properties as needed
-
-                        // Create the Event object
-                        event = new Event();
-                        event.setEventId(eventId);
-                        event.setTitle(title);
-                        event.setDescription(description);
-                        event.setPrice(price);
-                        // Set other event properties as needed
+                    	
+                        event.setEventId(resultSet.getInt("event_id"));
+                        event.setTitle(resultSet.getString("title"));
+                        event.setDescription(resultSet.getString("description"));
+                        event.setStartDate(resultSet.getDate("start_date"));
+                        event.setEndDate(resultSet.getDate("end_date"));
+                        event.setTime(resultSet.getString("time"));
+                        event.setLocation(resultSet.getString("location"));
+                        event.setOrganizerId(resultSet.getInt("organizer_id"));
+                        event.setPrice(resultSet.getFloat("price"));
+                        event.setImageUrl(resultSet.getString("image_url"));
+                        
+                        
                     }
                 }
             }

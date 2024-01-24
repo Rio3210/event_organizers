@@ -64,6 +64,15 @@ public class GetAllEvents extends HttpServlet {
                 event.setEventId(resultSet.getInt("event_id"));
                 event.setTitle(resultSet.getString("title"));
                 event.setDescription(resultSet.getString("description"));
+                event.setStartDate(resultSet.getDate("start_date"));
+                event.setEndDate(resultSet.getDate("end_date"));
+                event.setTime(resultSet.getString("time"));
+                event.setLocation(resultSet.getString("location"));
+                event.setOrganizerId(resultSet.getInt("organizer_id"));
+                event.setPrice(resultSet.getFloat("price"));
+                event.setImageUrl(resultSet.getString("image_url"));
+                
+                
                 // Set other event details accordingly
 
                 events.add(event);

@@ -14,10 +14,10 @@
 <%@ include file="header.jsp" %>
 <section class="my-5">
     <%-- Retrieve the event object from the request --%>
-    <% Event event = (Event) request.getAttribute("eventdetail"); %>
+    <% Event event = (Event) session.getAttribute("eventdetail"); %>
 
     <div class="event-details">
-        <img src="images/test.png" class="event-image" alt="Event Image">
+        <img src="images/<%= (event.getImageUrl() != null && !event.getImageUrl().isEmpty()) ? event.getImageUrl() : "test.png" %>" class="card-img-top" alt="Event Image">
         <div class="event-content">
             <div class="clearfix mb-3">
                 <span class="float-start badge rounded-pill bg-primary">ASUS Rog</span>

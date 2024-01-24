@@ -9,10 +9,12 @@ public class Event {
     private String description;
     private Date startDate;
     private Date endDate;
-    private Time time;
+    private String time;
     private String location;
     private float price;
-    private int organizerId; // Reference to the User who is the organizer
+    private int organizerId; 
+    private String imageUrl;
+    // Reference to the User who is the organizer
     
     // Setters and Getters
     public int getEventId() {
@@ -62,12 +64,12 @@ public class Event {
         this.endDate = endDate;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
-        this.time = time;
+    public void setTime(String string) {
+        this.time = string;
     }
 
     public String getLocation() {
@@ -85,6 +87,14 @@ public class Event {
     public void setOrganizerId(int organizerId) {
         this.organizerId = organizerId;
     }
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+	
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
     
     // Other methods as needed
 }

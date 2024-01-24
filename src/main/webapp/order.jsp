@@ -121,7 +121,7 @@
                     event.setDescription(resultSet.getString("description"));
                     event.setStartDate(resultSet.getDate("start_date"));
                     event.setEndDate(resultSet.getDate("end_date"));
-                    event.setTime(resultSet.getTime("time"));
+                    event.setTime(resultSet.getString("time"));
                     event.setLocation(resultSet.getString("location"));
                     event.setPrice(resultSet.getFloat("price"));
                     events.add(event);
