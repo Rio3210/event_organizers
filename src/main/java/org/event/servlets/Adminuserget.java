@@ -13,11 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.event.DBManager;
-import org.event.models.User;
+import org.event.models.*;
 
-/**
- * Servlet implementation class Adminuserget
- */
 @WebServlet("/adminuserget")
 public class Adminuserget extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -49,7 +46,7 @@ public class Adminuserget extends HttpServlet {
 				user.setUserId(resultSet.getInt("user_id"));
 				users.add(user);
 			}
-			System.out.println(users);
+			
 			request.setAttribute("users", users);
 			request.getRequestDispatcher("adminuserlist.jsp").forward(request, response);
 

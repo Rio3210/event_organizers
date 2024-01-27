@@ -11,7 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
+import jakarta.servlet.http.HttpSession;
 import org.event.DBManager;
 import org.event.models.News;
 
@@ -34,24 +34,14 @@ public class Admingetnews extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			Connection connection = DBManager.getConnection();
-			PreparedStatement statement = connection.prepareStatement("SELECT * FROM news");
-			ResultSet resultSet = statement.executeQuery();
-			List<News> news = new ArrayList<>();
-			while (resultSet.next()) {
-				News news1 = new News();
-				news1.setNewsId(resultSet.getInt("news_id"));
-				news1.setTitle(resultSet.getString("title"));
-				news1.setDescription(resultSet.getString("description"));
-				news.add(news1);
-			}
-			request.setAttribute("news", news);
-			request.getRequestDispatcher("Adminlandingpage.jsp").forward(request, response);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		HttpSession session=request.getSession();
+		List<News> news=fetchNewsArticles();
+		request.setAttribute("news", news);
+		if (session.getAttribute("role").equals("admin")) {
+		request.getRequestDispatcher("Adminlandingpage.jsp").forward(request, response);
+	} else {
+		request.getRequestDispatcher("news.jsp").forward(request, response);
+	}
 	}
 
 	/**
@@ -61,5 +51,33 @@ public class Admingetnews extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+	
+	public List<News> fetchNewsArticles() {
+	    List<News> news = new ArrayList<>();
+	    
+	    try {
+	        Connection connection = DBManager.getConnection();
+	        PreparedStatement statement = connection.prepareStatement("SELECT * FROM news");
+	        ResultSet resultSet = statement.executeQuery();
+	        
+	        while (resultSet.next()) {
+	            News news1 = new News();
+	            news1.setNewsId(resultSet.getInt("news_id"));
+	            news1.setTitle(resultSet.getString("title"));
+	            news1.setDescription(resultSet.getString("description"));
+	            news.add(news1);
+	        }
+	        
+	        // Close the resources
+	        resultSet.close();
+	        statement.close();
+	        connection.close();
 
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        // Handle the exception appropriately, such as logging the error or displaying a user-friendly error message
+	    }
+	    
+	    return news;
+	}
 }

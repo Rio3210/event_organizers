@@ -5,13 +5,16 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.event.DBManager;
+import org.event.models.Event;
 
 /**
  * Servlet implementation class DeleteEventServlet
@@ -22,6 +25,7 @@ public class DeleteEventServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	HttpSession session = request.getSession();
         int eventId = Integer.parseInt(request.getParameter("eventId"));
 
         // Check if the event has been ordered by any user
@@ -36,7 +40,9 @@ public class DeleteEventServlet extends HttpServlet {
 
         // If no orders, proceed to delete the event
         deleteEvent(eventId);
-
+        GetAllEvents getAllEventsServlet = new GetAllEvents();
+        List<Event> events = getAllEventsServlet.getAllEvents();
+        session.setAttribute("events", events);
         // Redirect to the page showing events (e.g., My Events or Orders)
         response.sendRedirect("GetPersonalEvents");
     }

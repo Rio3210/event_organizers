@@ -10,11 +10,11 @@
         <div class="col-10 col-md mx-1">
             <h1 class="fs-5 text-white text-center">Useful Links</h1>
             <ul class="w-50 mx-auto mt-2">
-                <li class="my-1 list-group-item"><a class="text-dark text-decoration-none" href="./howitworks.html">How it Works</a></li>
-                <li class="my-1 list-group-item"><a class="text-dark text-decoration-none" href="./about.html">About</a></li>
-                <li class="my-1 list-group-item"><a class="text-dark text-decoration-none" href="./offer.jsp">Offer</a></li>
-                <li class="my-1 list-group-item"><a class="text-dark text-decoration-none" href="./news.jsp">News</a></li>
-                <li class="my-1 list-group-item"><a class="text-dark text-decoration-none" href="./services.jsp">Services</a></li>
+                <li class="my-1 list-group-item"><a class="text-dark text-decoration-none" href="admingetnews">How it Works</a></li>
+                <li class="my-1 list-group-item"><a class="text-dark text-decoration-none" href="admingetnews">About</a></li>
+                <li class="my-1 list-group-item"><a class="text-dark text-decoration-none" href="admingetnews">Offer</a></li>
+                <li class="my-1 list-group-item"><a class="text-dark text-decoration-none" href="admingetnews">News</a></li>
+                <li class="my-1 list-group-item"><a class="text-dark text-decoration-none" href="admingetnews">Services</a></li>
             </ul>
         </div>
         <div class="col-10 col-md mx-1">

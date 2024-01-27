@@ -9,7 +9,7 @@
 
 	<header>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-		<a class="navbar-brand" href="index.jsp"> <img
+		<a class="navbar-brand" href="GetAllEvents"> <img
 			src="images/logo.png" height="40" alt="Logo"> 
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -20,7 +20,7 @@
 		<div class="collapse navbar-collapse justify-content-center"
 			id="navbarNav">
 			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" href="index.jsp"
+				<li class="nav-item"><a class="nav-link" href="GetAllEvents"
 					style="color: rgba(0, 0, 0, 0.8);">Home</a></li>
 				<li class="nav-item"><a class="nav-link" href="createevent.jsp"
 					style="color: rgba(0, 0, 0, 0.8);">Create Event</a></li>

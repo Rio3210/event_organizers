@@ -88,8 +88,22 @@
 
 	<section>	
 	<div class="container mt-5">
+			 <%
+		    String message = (String) session.getAttribute("statusm");
+		    if (message != null && !message.isEmpty()) {
+		    %>
+		    <div class="alert alert-primary text-center" role="alert">
+		      <%=message%>
+		    </div>
+		
+		    <%
+		    }
+		    %>
+		    <%
+		    session.removeAttribute("statusm");
+		    %>
         <div class="news-form">
-            <h2 class="text-center mb-4">Add News</h2>
+            <h2 class="text-center mb-4">Create Post</h2>
             <form action="adminnews" method="post">
                 <div class="form-group">
                     <label for="newsTitle">Title:</label>
@@ -100,7 +114,7 @@
                     <textarea class="form-control" name="description" rows="5"
                         placeholder="Enter news description" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-add-news btn-block">Add News</button>
+                <button type="submit" class="btn btn-add-news btn-block btn-white">Create Post</button>
             </form>
         </div>
     </div>

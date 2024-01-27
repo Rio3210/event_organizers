@@ -5,12 +5,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.event.DBManager;
 import org.event.models.Event;
@@ -21,14 +23,18 @@ public class EventUpdateHelper extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	HttpSession session = request.getSession();
         // Retrieve event ID from the submitted form
         String eventId = request.getParameter("eventId");
 
         // Fetch event data based on the event ID (you need to implement this method)
         Event event = fetchEventById(eventId);
-
+        GetAllEvents getAllEventsServlet = new GetAllEvents();
+        List<Event> events = getAllEventsServlet.getAllEvents();
+        session.setAttribute("events", events);
         // Set the event data as an attribute in the request
         request.setAttribute("editevent", event);
+       
 
         // Forward the request to editevent.jsp
         request.getRequestDispatcher("/editevent.jsp").forward(request, response);

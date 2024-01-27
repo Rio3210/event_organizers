@@ -58,7 +58,7 @@ public class GetPersonalEvent extends HttpServlet {
 	    dispatcher.forward(request, response);
 	}
 	
-	private List<Event> fetchEventByOrganizerId(int organizerId) {
+	public List<Event> fetchEventByOrganizerId(int organizerId) {
 	    List<Event> events = new ArrayList<>();
 	    try (Connection connection = DBManager.getConnection()) {
 	        // Build and execute a SQL query to fetch the events with the given organizer_id
@@ -69,17 +69,18 @@ public class GetPersonalEvent extends HttpServlet {
 	            try (ResultSet resultSet = statement.executeQuery()) {
 	                while (resultSet.next()) {
 	                    // Retrieve event details from the result set
-	                    int eventId = resultSet.getInt("event_id");
-	                    String title = resultSet.getString("title");
-	                    String description = resultSet.getString("description");
-	                    
-	                    // Retrieve other event properties as needed
 
-	                    // Create the Event object
 	                    Event event = new Event();
-	                    event.setEventId(eventId);
-	                    event.setTitle(title);
-	                    event.setDescription(description);
+	                    event.setEventId(resultSet.getInt("event_id"));
+	                    event.setTitle(resultSet.getString("title"));
+	                    event.setDescription(resultSet.getString("description"));
+	                    event.setStartDate(resultSet.getDate("start_date"));
+	                    event.setEndDate(resultSet.getDate("end_date"));
+	                    event.setTime(resultSet.getString("time"));
+	                    event.setLocation(resultSet.getString("location"));
+	                    event.setOrganizerId(resultSet.getInt("organizer_id"));
+	                    event.setPrice(resultSet.getFloat("price"));
+	                    event.setImageUrl(resultSet.getString("image_url"));
 	                    
 	                    // Set other event properties as needed
 

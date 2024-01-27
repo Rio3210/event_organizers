@@ -44,29 +44,36 @@ public class LoginServlet extends HttpServlet {
 		}
 		else {
 			try {
-				Connection conn = DBManager.getConnection();
-				PreparedStatement pst = conn.prepareStatement("select * from users where email=? and password=?");
-				pst.setString(1, email);
-				pst.setString(2, password);
-				
-				ResultSet rs = pst.executeQuery();
-				
-				if (rs.next()) {
-				    session.setAttribute("email", rs.getString("email"));
-				    session.setAttribute("organizer_id", rs.getInt("user_id"));
-				    session.setAttribute("image_url", rs.getString("image_url"));
-				    GetAllEvents getAllEventsServlet = new GetAllEvents();
-                    List<Event> events = getAllEventsServlet.getAllEvents();
-                    session.setAttribute("events", events);
-				    response.sendRedirect("index.jsp");
-				} else {
-				    request.setAttribute("status", "failed");
-				    dispatcher = request.getRequestDispatcher("login.jsp");
-				    dispatcher.forward(request, response);
-				}
-				dispatcher.forward(request, response);
+			    Connection conn = DBManager.getConnection();
+			    PreparedStatement pst = conn.prepareStatement("SELECT * FROM users WHERE email=? AND password=?");
+			    pst.setString(1, email);
+			    pst.setString(2, password);
+
+			    ResultSet rs = pst.executeQuery();
+
+			    if (rs.next()) {
+			        session.setAttribute("email", rs.getString("email"));
+			        session.setAttribute("organizer_id", rs.getInt("user_id"));
+			        session.setAttribute("image_url", rs.getString("image_url"));
+			        GetAllEvents getAllEventsServlet = new GetAllEvents();
+			        List<Event> events = getAllEventsServlet.getAllEvents();
+			        session.setAttribute("events", events);
+
+			        String role = rs.getString("role");
+			        session.setAttribute("role", role);
+			        if (role.equals("admin")) {
+			            response.sendRedirect("admingetnews"); 
+			        } else {
+			            response.sendRedirect("index.jsp"); 
+			        }
+			    } else {
+			        request.setAttribute("status", "failed");
+			        dispatcher = request.getRequestDispatcher("login.jsp");
+			        dispatcher.forward(request, response);
+			    }
 			} catch (Exception e) {
-				e.printStackTrace();		}
+			    e.printStackTrace();
+			}
 		}
 
 	

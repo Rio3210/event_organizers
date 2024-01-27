@@ -10,6 +10,7 @@
     <title>My Events</title>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="https://unpkg.com/sweetalert/dist/sweetalert.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- Add any other CSS files or stylesheets here -->
     <style>
         .card img {
@@ -31,30 +32,36 @@
                 %>
                 <div class="col-md-4 mt-2">
                     <div class="card  shadow-sm">
-                        <img src="images/test.png" class="card-img-top" alt="Event Image">
+                       <img src="images/<%= (event.getImageUrl() != null && !event.getImageUrl().isEmpty()) ? event.getImageUrl() : "test.png" %>" class="card-img-top" alt="Event Image">
                         <div class="card-body">
                             <div class="clearfix mb-3">
-                                <span class="float-start badge rounded-pill bg-primary">ASUS Rog</span>
-                                <span class="float-end price-hp">event.getPrice()</span>
+                                <span class="float-start badge rounded-pill bg-primary">price</span>
+                                <span class="float-end price-hp"><%=event.getPrice() %></span>
                             </div>
                             <h5 class="card-title"><%= event.getTitle() %></h5>
                             <p class="card-text">Description: <%= event.getDescription() %></p>
                             <div class="text-center my-4">
                                 <form action="EventUpdateHelper" method="post" class="d-inline mx-auto">
                                     <input type="hidden" name="eventId" value="<%= event.getEventId() %>">
-                                    <button type="submit" class="btn btn-success w-100 rounded">Edit</button>
+                                    <button type="submit" class="btn btn-success w-100 rounded">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
                                 </form>
                             </div>
                             <div class="text-center my-4">
                                 <form id="deleteForm_<%= event.getEventId() %>" action="DeleteEventServlet" method="post" class="d-inline mx-auto">
                                     <input type="hidden" name="eventId" value="<%= event.getEventId() %>">
-                                    <button type="button" class="btn btn-danger w-100 rounded" onclick="confirmDelete('<%= event.getEventId() %>')">Delete</button>
+                                    <button type="button" class="btn btn-danger w-100 rounded" onclick="confirmDelete('<%= event.getEventId() %>')">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
                                 </form>
                             </div>
                             <div class="text-center my-4">
                                 <form action="UserListServlet" method="post" class="d-inline mx-auto">
                                     <input type="hidden" name="eventId" value="<%= event.getEventId() %>">
-                                    <button type="submit" class="btn btn-info w-100 rounded">View Attendees</button>
+                                    <button type="submit" class="btn btn-info w-100 rounded">
+                                        <i class="fas fa-users"></i> View Attendees
+                                    </button>
                                 </form>
                             </div>
                         </div>

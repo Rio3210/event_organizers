@@ -69,7 +69,7 @@
                 <div class="event-container d-flex justify-content-center">
                     <div class="event-image">
                     	<!-- <img src="event.getImageURL() " alt="Event Image" height="100"> -->
-                        <img src="images/test.png" alt="Event Image" height="100">
+                       <img src="images/<%= (event.getImageUrl() != null && !event.getImageUrl().isEmpty()) ? event.getImageUrl() : "test.png" %>" class="card-img-top" alt="Event Image">
                     </div>
                     <div class="event-details">
                         <div class="event-title"><%= event.getTitle() %></div>

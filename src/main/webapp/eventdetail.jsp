@@ -65,14 +65,19 @@
       <div class="flex-grow-2">
         <div class="event-content">
           <div class="clearfix mb-3">
-            <span class="float-start badge rounded-pill bg-primary">ASUS
-              Rog</span> <span class="float-end price-hp"><%=event.getPrice()%>&euro;</span>
+            <span class="float-start badge rounded-pill bg-primary">price</span> <strong class="float-end price-hp px-1"><%=event.getPrice()%> Birr</strong>
           </div>
           <h5 class="card-title"><%=event.getTitle()%></h5>
           <p class="card-text">
-            Description:
+            
             <%=event.getDescription()%></p>
           <!-- Display other event details as needed -->
+          <p class="card-text">
+          <strong>Location: </strong> <%=event.getLocation()%>
+          </p>
+          <p class="card-text">
+          	<strong>Date: </strong> <%=event.getStartDate() %> to <%= event.getEndDate() %>
+          </p>
           <div class="text-center my-4">
             <div class="text-center my-4">
               <form method="POST" action="https://api.chapa.co/v1/hosted/pay">

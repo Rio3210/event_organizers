@@ -71,7 +71,7 @@
     </style>
 </head>
 
-<title>userlist page</title>
+<title>users</title>
 
 <body>
     <section>

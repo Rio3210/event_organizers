@@ -73,7 +73,7 @@
     </style>
 </head>
 
-<title>Event page</title>
+<title>Events</title>
 
 <body>
     <section >

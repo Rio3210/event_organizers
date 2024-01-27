@@ -34,12 +34,7 @@ try {
 		//String profileImagePath = imageUrl;
 		session.setAttribute("image_url",imageUrl);
 
-		System.out.println("User information fetched successfully.");
-		System.out.println("First Name: " + firstName);
-		System.out.println("Last Name: " + lastName);
-		System.out.println("Username: " + username);
-		System.out.println("Email: " + email);
-		System.out.println("User image fetched: " + imageUrl);
+		
 	} else {
 		System.out.println("No user found with the given ID");
 	}

@@ -5,6 +5,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -39,6 +41,7 @@ public class Adminnews extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = (HttpSession) request.getSession();
 		String title = request.getParameter("title");
 		String description = request.getParameter("description");
 		
@@ -54,6 +57,7 @@ public class Adminnews extends HttpServlet {
 				int rowsAffected = statement.executeUpdate();
 
 				if (rowsAffected > 0) {
+					session.setAttribute("statusm", "News Create successFully");
 					response.sendRedirect("Adminpage.jsp");
 				}
 			}
