@@ -72,6 +72,7 @@ public class GetPersonalEvent extends HttpServlet {
 	                    int eventId = resultSet.getInt("event_id");
 	                    String title = resultSet.getString("title");
 	                    String description = resultSet.getString("description");
+	                    
 	                    // Retrieve other event properties as needed
 
 	                    // Create the Event object
@@ -79,6 +80,7 @@ public class GetPersonalEvent extends HttpServlet {
 	                    event.setEventId(eventId);
 	                    event.setTitle(title);
 	                    event.setDescription(description);
+	                    
 	                    // Set other event properties as needed
 
 	                    // Add the event to the list

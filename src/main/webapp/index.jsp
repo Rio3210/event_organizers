@@ -17,6 +17,19 @@
     .card img{
       height: 160px;
     }
+    .description {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  .description-short {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
   </style>
 </head>
 <body>
@@ -57,37 +70,38 @@
       </div>
       <!-- Event cards -->
       <div class="row" id="eventCards">
-        <% 
-          List<Event> events = (List<Event>) session.getAttribute("events");
-          if (events != null) {
-            for (Event event : events) {
-        %>
-          <div class="col-md-4 event-card">
-            <div class="card h-100 shadow-sm mt-5" style="max-height: 350px;">
-              <img src="images/<%= (event.getImageUrl() != null && !event.getImageUrl().isEmpty()) ? event.getImageUrl() : "test.png" %>" class="card-img-top" alt="Event Image">
+  <% 
+    List<Event> events = (List<Event>) session.getAttribute("events");
+    if (events != null) {
+      for (Event event : events) {
+  %>
+    <div class="col-md-4 event-card">
+      <div class="card h-100 shadow-sm mt-5" style="max-height: 350px;">
+        <img src="images/<%= (event.getImageUrl() != null && !event.getImageUrl().isEmpty()) ? event.getImageUrl() : "test.png" %>" class="card-img-top" alt="Event Image">
 
-              <div class="card-body">
-                <div class="clearfix mb-3">
-                  <span class="float-start badge rounded-pill bg-primary"><%= event.getPrice() %>Birr</span>
-                  <span class="float-end price-hp"><%= event.getStartDate() %> - <%= event.getEndDate() %></span>
-                </div>
-                <h5 class="card-title"><%= event.getTitle() %></h5>
-                <p class="card-text">Description: <%= event.getDescription() %></p>
-                <!-- Display other event details as needed -->
-                <div class="text-center my-4">
-                  <form action="EventDetailServlet" method="post" class="d-inline mx-auto">
-                    <input type="hidden" name="eventId" value="<%= event.getEventId() %>">
-                    <button type="submit" class="btn btn-primary">Book Now</button>
-                  </form>
-                </div>
-              </div>
-            </div>
+        <div class="card-body">
+          <div class="clearfix mb-3">
+            <span class="float-start badge rounded-pill bg-primary"><%= event.getPrice() %>Birr</span>
+            <span class="float-end price-hp"><%= event.getStartDate() %> - <%= event.getEndDate() %></span>
           </div>
-        <%
-            }
-          }
-        %>
+          <h5 class="card-title"><%= event.getTitle() %></h5>
+          <p class="card-text description"><%= event.getDescription() %></p>
+          <p class="card-text description-short d-none"></p> <!-- Hidden shortened description -->
+
+          <div class="text-center my-4">
+            <form action="EventDetailServlet" method="post" class="d-inline mx-auto">
+              <input type="hidden" name="eventId" value="<%= event.getEventId() %>">
+              <button type="submit" class="btn btn-primary">Book Now</button>
+            </form>
+          </div>
+        </div>
       </div>
+    </div>
+  <%
+      }
+    }
+  %>
+</div>
     </div>
   </section>
 

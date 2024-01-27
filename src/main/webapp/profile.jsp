@@ -31,7 +31,7 @@ try {
 		email = rs.getString("email");
 		imageUrl = rs.getString("image_url");
 
-		String profileImagePath = imageUrl;
+		//String profileImagePath = imageUrl;
 		session.setAttribute("image_url",imageUrl);
 
 		System.out.println("User information fetched successfully.");
@@ -130,7 +130,12 @@ body {
 }
 </style>
 
-
+	<script>
+        function logout() {
+            // Assuming your logout servlet is mapped to "LogoutServlet"
+            window.location.href = "logout";
+        }
+    </script>
 
 </head>
 <%@include file="header.jsp" %>
@@ -154,7 +159,7 @@ body {
 
 							<div class="mt-3">
 								<h4><%=username%></h4>
-								<p class="text-muted font-size-sm">Addis Ababa, Ethiopia,</p>
+								<p class="text-muted font-size-sm">Addis Ababa, Ethiopia</p>
 
 							</div>
 
@@ -231,7 +236,9 @@ body {
 								Account</button>
 						</div>
 
-
+						<div class="d-flex justify-content-end mt-3">
+					        <button type="button" class="btn btn-danger" onclick="logout()">Logout</button>
+					    </div>
 
 					</div>
 
@@ -240,7 +247,7 @@ body {
 			</div>
 
 		</div>
-
+		
 		<div class="modal" id="changePasswordModal" tabindex="-1"
 			role="dialog">
 			<div class="modal-dialog" role="document">

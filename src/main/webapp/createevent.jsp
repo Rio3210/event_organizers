@@ -20,7 +20,7 @@
     String message = (String) session.getAttribute("message");
     if (message != null && !message.isEmpty()) {
     %>
-    <div class="alert alert-primary" role="alert">
+    <div class="alert alert-primary text-center" role="alert">
       <%=message%>
     </div>
 

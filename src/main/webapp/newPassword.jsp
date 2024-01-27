@@ -5,7 +5,8 @@
 <head>
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
-<title>Snippet - BBBootstrap</title>
+<link rel="icon" type="image/x-icon" href="images/logo.png">
+<title>Reset Password</title>
 <link
 	href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css'
 	rel='stylesheet'>
@@ -20,7 +21,7 @@
 }
 
 .custom-control-label::before {
-	background-color: #dee2e6;
+	background-color: ##1e0a3c;
 	border: #dee2e6
 }
 </style>
@@ -79,7 +80,7 @@
 							<div class="pt-2">
 								<div class="row justify-content-center">
 									<h5>
-										Don't have an Account?<span><a href="#"
+										Don't have an Account?<span><a href="./registration.jsp"
 											class="text-danger"> Register Now!</a></span>
 									</h5>
 								</div>
