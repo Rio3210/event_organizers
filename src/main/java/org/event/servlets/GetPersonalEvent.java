@@ -58,13 +58,13 @@ public class GetPersonalEvent extends HttpServlet {
 	    dispatcher.forward(request, response);
 	}
 	
-	public List<Event> fetchEventByOrganizerId(int organizerId) {
+	public List<Event> fetchEventByOrganizerId(int object) {
 	    List<Event> events = new ArrayList<>();
 	    try (Connection connection = DBManager.getConnection()) {
 	        // Build and execute a SQL query to fetch the events with the given organizer_id
 	        String query = "SELECT * FROM events WHERE organizer_id = ?";
 	        try (PreparedStatement statement = connection.prepareStatement(query)) {
-	            statement.setInt(1, organizerId);
+	            statement.setInt(1, object);
 
 	            try (ResultSet resultSet = statement.executeQuery()) {
 	                while (resultSet.next()) {

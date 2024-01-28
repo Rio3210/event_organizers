@@ -88,6 +88,9 @@ if(status == "invalid"){
 if(status == "resetSuccess"){
 	swal("Congrats","Password changed successfully","success");
 }
+if (status =="Account Deleted Successfully"){
+	swal(";)","Account Deleted Successfully","success")
+}
 </script>
 </body>
 </html>

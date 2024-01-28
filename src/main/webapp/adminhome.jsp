@@ -44,6 +44,10 @@
             margin: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+        h3 {
+            color: #007bff;
+           =
+        }
 
         .card-header {
             background-color: #17a2b8; /* Info color */
@@ -55,6 +59,10 @@
         .card-body {
             padding: 20px;
         }
+        .cont{
+        	height:100vh;
+        }
+        
     </style>
 </head>
 
@@ -104,24 +112,48 @@
     </section>
 
     <section>
-        <div class="container">
-            <h3 class="mt-4">News List</h3>
-            <div class="d-flex flex-wrap">
-                <%
-                    List<News> news = (List<News>) request.getAttribute("news");
-                    for (News n : news) {
-                %>
-                <div class="card">
-                    <div class="card-header">
-                        <%= n.getTitle() %>
-                    </div>
-                    <div class="card-body">
-                        <p><%= n.getDescription() %></p>
-                    </div>
+        <section class="cont w-100 mx-auto">
+    <div class="container">
+        <h3 class="mt-4">Dashboard</h3>
+        <div class="d-flex flex-wrap">
+            <div class="card">
+                <div class="card-header">
+                    Total Users
                 </div>
-                <% } %>
+                <div class="card-body text-center font-weight-bold">
+                    <%= request.getAttribute("totalUsers") %>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    Total Events
+                </div>
+                <div class="card-body text-center font-weight-bold">
+                    <%= request.getAttribute("totalEvents") %>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    Total Orders
+                </div>
+                <div class="card-body text-center font-weight-bold">
+                    <%= request.getAttribute("totalOrders") %> 
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    Total Money Transactions
+                </div>
+                <div class="card-body text-center font-weight-bold">
+                    <%= request.getAttribute("totalRevenue") %> Birr
+                </div>
             </div>
         </div>
+    </div>
+</section>
     </section>
 
     <%@ include file="footer.jsp"%>

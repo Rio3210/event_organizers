@@ -67,6 +67,9 @@
             color: #007bff;
             margin-top: 20px;
         }
+        .cont{
+        	height:100vh;
+        }
     </style>
 </head>
 
@@ -87,7 +90,7 @@
             <ul class="navbar-nav">
                 <!-- Add the Home button -->
                  <li class="nav-item mr-3 ml-5">
-                    <form action="admingetnews" class="nav-link" method="get">
+                    <form action="adminlanding" class="nav-link" method="get">
                         <input type="submit" value="Home" class="btn btn-info">
                     </form>
                 </li>
@@ -105,7 +108,7 @@
                 </li>
                 <li class="nav-item">
                     <form action="Adminpage.jsp" class="nav-link" method="get">
-                        <input type="submit" value="News" class="btn btn-info">
+                        <input type="submit" value="Create Post" class="btn btn-info">
                     </form>
                 </li>
             </div>
@@ -114,7 +117,7 @@
 </header>
     </section>
 
-    <section>
+    <section class="cont">
         <div class="container">
             <h3>All Event List</h3>
             <table class="table table-bordered">

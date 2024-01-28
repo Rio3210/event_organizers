@@ -27,14 +27,18 @@
 				<li class="nav-item"><a class="nav-link"
 					href="GetPersonalEvents" style="color: rgba(0, 0, 0, 0.8);">My
 						Events</a></li>
+				<% String role = (String) session.getAttribute("role");
+				if (role != null && role.equals("admin")) { %><li class="nav-item"><a class="nav-link" href="adminlanding" style="color: rgba(0, 0, 0, 0.8);">Dashboard</a></li> <% } %>
 			</ul>
 		</div>
 		<div class="navbar-nav ml-auto">
 			<a class="nav-item nav-link" href="order.jsp"> <i
 				class="fas fa-shopping-cart"></i> <!-- Font Awesome shopping cart icon -->
-			</a> <a class="nav-item nav-link" href="profile.jsp"> <img
-				src="images/<%=session.getAttribute("image_url") %>" alt="Profile" height="30"
-				class="rounded-circle"> <!-- Replace with profile image -->
+			</a> <a class="nav-item nav-link" href="profile.jsp"> <%
+			   
+			    String profileImage = ((String) session.getAttribute("image_url") != null && !((String) session.getAttribute("image_url")).isEmpty()) ? (String) session.getAttribute("image_url") : "temp_prof.jpg";
+			%>
+			<img src="images/<%= profileImage %>" alt="Profile" height="30" width="30" class="rounded-circle"> <!-- Replace with profile image -->
 			</a>
 		</div>
 	</nav>

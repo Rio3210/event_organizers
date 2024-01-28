@@ -11,7 +11,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
    
-
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         .bgcolor-ed {
             background-color: #007bff;
@@ -68,6 +68,9 @@
             color: #007bff;
             margin-top: 20px;
         }
+        .cont{
+        	height:100vh;
+        }
     </style>
 </head>
 
@@ -88,7 +91,7 @@
             <ul class="navbar-nav">
                 <!-- Add the Home button -->
                  <li class="nav-item mr-3 ml-5">
-                    <form action="admingetnews" class="nav-link" method="get">
+                    <form action="adminlanding" class="nav-link" method="get">
                         <input type="submit" value="Home" class="btn btn-info">
                     </form>
                 </li>
@@ -106,7 +109,7 @@
                 </li>
                 <li class="nav-item">
                     <form action="Adminpage.jsp" class="nav-link" method="get">
-                        <input type="submit" value="News" class="btn btn-info">
+                        <input type="submit" value="Create Post" class="btn btn-info">
                     </form>
                 </li>
             </div>
@@ -115,7 +118,7 @@
 </header>
     </section>
 
-    <section>
+    <section class="cont">
         <div class="container">
             <h3>Users</h3>
             <table class="table table-bordered">
@@ -127,22 +130,56 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <%
-                        List<User> users = (List<User>) request.getAttribute("users");
-                        for (User user : users) {
-                    %>
-                    <tr>
-                        <td><%= user.getUserId() %></td>
-                        <td><%= user.getUsername() %></td>
-                        <td><%= user.getEmail() %></td>
-                    </tr>
-                    <% } %>
-                </tbody>
+			    <% List<User> users = (List<User>) request.getAttribute("users");
+			    for (User user : users) { %>
+			    <tr>
+			        <td><%= user.getUserId() %></td>
+			        <td><%= user.getUsername() %></td>
+			        <td><%= user.getEmail() %></td>
+			        <td>
+			            <a href="#" class="delete-icon" data-toggle="modal" data-target="#confirmDeleteModal">
+			                <i class="fas fa-trash-alt"></i>
+			            </a>
+			        </td>
+    </tr>
+    <% } %>
+</tbody>
             </table>
         </div>
     </section>
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeleteModalLabel">Delete Account</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this user?</p>
+                <form method="post" action="userdelete">
+                    <input type="hidden" name="userId" value="">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
     <%@ include file="footer.jsp"%>
-    <script type="js/bootstrap.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.delete-icon').click(function() {
+            var userId = $(this).closest('tr').find('td:first').text();
+            $('#confirmDeleteModal input[name="userId"]').val(userId);
+        });
+    });
+</script>
 </body>
 
 </html>

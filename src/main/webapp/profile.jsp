@@ -278,26 +278,29 @@ body {
 			</div>
 		</div>
 		<div class="modal" id="deleteAccountModal" tabindex="-1" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title">Delete Account</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<p>Are you sure you want to delete your account?</p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">Cancel</button>
-						<button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
-					</div>
-				</div>
-			</div>
-		</div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Account</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete your account?</p>
+        <!-- Add a hidden input field to hold the userId -->
+        <input type="hidden" name="userId" value="<%= organizerId %>">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <form method="post" action="userdelete">
+          <!-- Submit the form to userdeleteservlet -->
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 	</section>
 	
 	 <%@ include file="footer.jsp" %>

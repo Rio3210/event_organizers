@@ -62,7 +62,7 @@ public class LoginServlet extends HttpServlet {
 			        String role = rs.getString("role");
 			        session.setAttribute("role", role);
 			        if (role.equals("admin")) {
-			            response.sendRedirect("admingetnews"); 
+			            response.sendRedirect("adminlanding"); 
 			        } else {
 			            response.sendRedirect("index.jsp"); 
 			        }

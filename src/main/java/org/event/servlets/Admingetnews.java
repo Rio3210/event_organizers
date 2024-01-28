@@ -54,12 +54,12 @@ public class Admingetnews extends HttpServlet {
 	
 	public List<News> fetchNewsArticles() {
 	    List<News> news = new ArrayList<>();
-	    
+
 	    try {
 	        Connection connection = DBManager.getConnection();
-	        PreparedStatement statement = connection.prepareStatement("SELECT * FROM news");
+	        PreparedStatement statement = connection.prepareStatement("SELECT * FROM news ORDER BY news_id DESC");
 	        ResultSet resultSet = statement.executeQuery();
-	        
+
 	        while (resultSet.next()) {
 	            News news1 = new News();
 	            news1.setNewsId(resultSet.getInt("news_id"));
@@ -67,7 +67,7 @@ public class Admingetnews extends HttpServlet {
 	            news1.setDescription(resultSet.getString("description"));
 	            news.add(news1);
 	        }
-	        
+
 	        // Close the resources
 	        resultSet.close();
 	        statement.close();
@@ -77,7 +77,7 @@ public class Admingetnews extends HttpServlet {
 	        e.printStackTrace();
 	        // Handle the exception appropriately, such as logging the error or displaying a user-friendly error message
 	    }
-	    
+
 	    return news;
 	}
 }
