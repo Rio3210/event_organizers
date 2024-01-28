@@ -58,10 +58,7 @@ try {
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap.css">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
@@ -308,8 +305,8 @@ body {
 	<script src="js/main.js"></script>
 
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<script src="js/main.js"></script>
+	
+	
 
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 

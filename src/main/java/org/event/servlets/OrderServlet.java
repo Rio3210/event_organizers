@@ -9,13 +9,16 @@ import java.io.IOException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-
-
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import org.event.DBManager;
 
 @WebServlet("/OrderServlet")
 public class OrderServlet extends HttpServlet {
+	public OrderServlet() {
+		super();
+	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    // Retrieve the user_id and event_id from the query string
 	    String input = request.getParameter("user_id");
@@ -46,5 +49,21 @@ public class OrderServlet extends HttpServlet {
 	        // Handle any errors
 	    }
 	}
+	
+	 public boolean CheckEventBoughtBefore(int eventId) throws SQLException {
+	        try (Connection connection = DBManager.getConnection()) {
+	            String sql = "SELECT COUNT(*) FROM orders WHERE event_id = ?";
+	            PreparedStatement statement = connection.prepareStatement(sql);
+	            statement.setInt(1, eventId);
+	            ResultSet resultSet = statement.executeQuery();
+	            if (resultSet.next()) {
+	                int count = resultSet.getInt(1);
+	                return count > 0;
+	            }
+	        } catch (SQLException e) {
+	            throw e;
+	        }
+	        return false;
+	    }
     
 }

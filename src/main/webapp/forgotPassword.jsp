@@ -5,11 +5,8 @@
 <head>
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
-<title>Snippet - BBBootstrap</title>
-<link
-	href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css'
-	rel='stylesheet'>
-<link href='' rel='stylesheet'>
+<title>Forget Password</title>
+ <link rel="stylesheet" href="css/bootstrap.css">
 <script type='text/javascript'
 	src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 <style>
@@ -87,10 +84,7 @@ body {
 			</div>
 		</div>
 	</div>
-	<script type='text/javascript'
-		src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js'></script>
-	<script type='text/javascript' src=''></script>
-	<script type='text/javascript' src=''></script>
-	<script type='text/Javascript'></script>
+	<script src="js/bootstrap.js"></script>
+	
 </body>
 </html>

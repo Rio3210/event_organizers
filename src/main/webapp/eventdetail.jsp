@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
 <%@ page import="org.event.models.Event"%>
+<%@ page import="org.event.servlets.OrderServlet"%>
 <%@ page import="java.util.List"%>
 <html>
 <head>
@@ -54,6 +55,9 @@
     <%
     Event event = (Event) session.getAttribute("eventdetail");
     int userId = (int) session.getAttribute("organizer_id");
+	
+	OrderServlet ordercheck = new OrderServlet();
+	Boolean check = ordercheck.CheckEventBoughtBefore(event.getEventId());
     %>
 
     <div class="event-details shadow bg-white rounded first">
@@ -107,7 +111,7 @@
                 <input type="hidden" name="return_url" value="<%=returnUrl%>" />
                 <input type="hidden" name="meta[title]" value="test" />
                 <%-- Conditionally show/hide Pay Now button --%>
-                <% if (userId != event.getOrganizerId()) { %>
+                <% if (userId != event.getOrganizerId() && !check) { %>
                   <button type="submit" class="btn btn-primary">Pay Now</button>
                 <% } %>
               </form>
